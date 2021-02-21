@@ -26,31 +26,7 @@ from kivymd.uix.dialog import MDDialog
 import weakref
 from functools import partial
 
-
-def send_message(service, user_id, message):
-    '''Send an email message.
-
-    Args:
-      service: Authorized Gmail API service instance.
-      user_id: User's email address. The special value 'me'
-      can be used to indicate the authenticated user.
-      message: Message to be sent.
-
-    Returns:
-      Sent Message.
-    '''
-    try:
-        message = (service.users().messages().send(userId=user_id, body=message)
-                   .execute())
-        print('Message Id: %s' % message['id'])
-        return message
-
-    except Exception as error:
-        print('An error occurred: %s' % error)
-
-
-# ----------------------------------------------
-
+SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def main():
     '''Shows basic usage of the Gmail API.
